@@ -1,11 +1,14 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
     <ul>
       <li v-for="item of lista" :key="item.id">
       {{ item.nome }}: {{ item.id }}
       </li>
     </ul>
+    <form v-on:submit="getData">
+      <input name="pesquisa" placeholder="pesquisa" v-on:change="onChangePesquisa" />
+      <button> Pesquisar </button>
+    </form>
   </div>
 </template>
 
@@ -14,17 +17,19 @@ export default ({
   name: 'App',
   data() {
     return {
-      lista: []
+      lista: [],
+      pesquisa: ""
     }
   },
-  created(){
-    this.getData();
-  },
   methods: {
-    async getData(){
-      const res = await fetch('http://127.0.0.1:8000/');
+    async getData(e) {
+      e.preventDefault()
+      const res = await fetch(`http://127.0.0.1:8000/?pesquisa=${this.pesquisa}`);
       const data = await res.json();
       this.lista = data;
+    },
+    onChangePesquisa(e) {
+      this.pesquisa = e.target.value
     }
   }
 })

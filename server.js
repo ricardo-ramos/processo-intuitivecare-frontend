@@ -20,6 +20,10 @@ app.get("/", (req, res, next) => {
   fs.createReadStream(path)
   .pipe(csv.parse({ headers: true }))
   .on('error', error => console.error(error))
-  .on('data', row => data.push(row))
+  .on('data', row => {
+    if(row.nome.includes(req.query.pesquisa) || row.id.includes(req.query.pesquisa)) {
+      data.push(row)
+    }
+  })
   .on('end', () => res.json(data));
 });
