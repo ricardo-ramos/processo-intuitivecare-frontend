@@ -1,10 +1,6 @@
 <template>
   <div id="app">
-    <ul>
-      <li v-for="item of lista" :key="item.id">
-      {{ item.nome }}: {{ item.id }}
-      </li>
-    </ul>
+    <ListFoundItems :lista="lista" />
     <form v-on:submit="getData">
       <input name="pesquisa" placeholder="pesquisa" v-on:change="onChangePesquisa" />
       <button> Pesquisar </button>
@@ -13,8 +9,13 @@
 </template>
 
 <script>
+import ListFoundItems from "./components/ListFoundItems/ListFoundItems.vue"
+
 export default ({
-  name: 'App',
+  name: "App",
+  components: {
+    ListFoundItems,
+  },
   data() {
     return {
       lista: [],
@@ -37,12 +38,12 @@ export default ({
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+  }
 </style>

@@ -1,5 +1,5 @@
-const path = './tabela-teste.csv';
-const csv = require('fast-csv');
+const path = "./tabela-teste.csv";
+const csv = require("fast-csv");
 
 const express = require("express");
 const app = express();
@@ -25,5 +25,5 @@ app.get("/", (req, res, next) => {
       data.push(row)
     }
   })
-  .on('end', () => res.json(data));
+  .on("end", () => res.json(data));
 });
