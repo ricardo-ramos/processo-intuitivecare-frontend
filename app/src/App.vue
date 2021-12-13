@@ -1,10 +1,12 @@
 <template>
   <div id="app">
-    <ListFoundItems :lista="lista" />
-    <form v-on:submit="getData">
-      <input name="pesquisa" placeholder="pesquisa" v-on:change="onChangePesquisa" />
-      <button> Pesquisar </button>
-    </form>
+    <div class="search-container">
+      <form v-on:submit="getData">
+        <input name="pesquisa" placeholder="pesquisa" v-on:change="onChangePesquisa" />
+        <button> Pesquisar </button>
+      </form>
+      <ListFoundItems :lista="lista" />
+    </div>
   </div>
 </template>
 
@@ -39,11 +41,25 @@ export default ({
 
 <style>
   #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    height: 100vh;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    justify-content: center;
     text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
+  }
+
+  form {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .search-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    justify-content: center;
   }
 </style>
